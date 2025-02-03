@@ -7,7 +7,7 @@ import { AttachAddon } from 'xterm-addon-attach';
   encapsulation: ViewEncapsulation.None,
   selector: 'app-terminal',
   templateUrl: './terminal.component.html',
-  styleUrls: ['./terminal.component.css']
+  styleUrls: ['./terminal.component.scss']
 })
 export class TerminalComponent implements OnInit, OnDestroy {
   @ViewChild('terminal', { static: true }) terminalDiv!: ElementRef;
