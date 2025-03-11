@@ -1,0 +1,18 @@
+app-component {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Takes full screen */
+  width: 100vw;
+  overflow: hidden;
+}
+
+app-navbar {
+  height: 60px;
+  flex-shrink: 0; /* Keeps navbar fixed height */
+}
+
+app-terminal {
+  flex-grow: 1; /* Terminal takes remaining space below navbar */
+  display: flex;
+  width: 100%;
+}

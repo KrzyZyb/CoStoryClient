@@ -1,27 +1,15 @@
 html, body {
+  display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden; /* Prevents any scrollbars from appearing */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  overflow: hidden; /* Prevents unwanted scrollbars */
 }
 
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
   display: none; /* Hide scrollbar in Chrome/Safari */
-}
-
-
-.terminal-container {
-  width: 100%;
-  height: 100%;
-  display: flex !important; /* Force proper flex behavior */
-  flex-direction: column !important; /* Prevents xterm.js from overriding */
-  overflow: hidden !important; /* Ensures no scrollbars appear */
-  position: absolute; /* Prevents unwanted white space */
-  top: 0;
-  left: 0;
 }

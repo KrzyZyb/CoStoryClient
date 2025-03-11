@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { TerminalComponent } from './terminal/terminal.component';
+import {NavbarComponent} from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { TerminalComponent } from './terminal/terminal.component';
     TerminalComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NavbarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
