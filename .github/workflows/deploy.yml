@@ -1,12 +1,15 @@
-name: Deploy CostoryApp to GitHub Pages
+name: Build and Deploy Angular to GitHub Pages
 
 on:
   push:
     branches:
       - main  # Runs on every push to main
 
+permissions:
+  contents: write  # Allows pushing to gh-pages
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,18 +19,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18  # Use a Node.js version that matches your project
+          node-version: 18
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
 
-      - name: Build Angular App
-        run: |
-          npm run build -- --configuration production --base-href "/CoStoryClient/"
+      - name: Install dependencies
+        run: npm ci  # Ensures a clean install based on package-lock.json
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production --output-path docs --base-href "/CoStoryClient/"
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: main  # Deploy to the main branch
-          folder: docs  # Deploy the built Angular app inside docs/
-          clean: true  # Deletes old files before deploying
+          branch: gh-pages  # Deploys to GitHub Pages
+          folder: docs/browser  # Serve from "browser" instead of "docs"
+          clean: true  # Ensures no old files remain
+          token: ${{ secrets.GH_PAT }}  # Uses your personal access token
