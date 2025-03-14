@@ -1,0 +1,33 @@
+name: Deploy CostoryApp to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Runs on every push to main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Use a Node.js version that matches your project
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Angular App
+        run: |
+          npm run build -- --configuration production --base-href "/CoStoryClient/"
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main  # Deploy to the main branch
+          folder: docs  # Deploy the built Angular app inside docs/
+          clean: true  # Deletes old files before deploying
